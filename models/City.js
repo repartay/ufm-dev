@@ -3,12 +3,17 @@ const { Schema } = mongoose;
 const RestaurantSchema = require('./CityRestaurant');
 
 const citySchema = new Schema ({
-	nameCity: String,
-	nameState: String,
+	nameCity: {
+		type: String,
+		required: true
+	},
+	nameState: {
+		type: String,
+		required: true
+	},
 	uriCity: String,
 	uriState: String,
-	restaurants: [RestaurantSchema],
-	lastUpdated: Date
+	restaurants: [RestaurantSchema]
 });
 
 mongoose.model('cities', citySchema);

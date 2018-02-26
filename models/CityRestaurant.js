@@ -3,11 +3,12 @@ const { Schema } = mongoose;
 
 const restaurantSchema = new Schema ({
 	name: String,
-	category: String,
+	address: String,
+	city: String,
+	state: String,
 	phoneNumber: String,
-	website: String,
-	linkYelp: String,
-	linkFb: String
+	twoWordDescription: String
 });
 
-module.exports = restaurantSchema;
+mongoose.model('restaurants', restaurantSchema);
+// module.exports = restaurantSchema;
