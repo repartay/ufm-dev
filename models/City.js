@@ -8,7 +8,7 @@ const citySchema = new Schema ({
 	uriCity: String,
 	uriState: String,
 	restaurants: [RestaurantSchema],
-	lastUpdated: Date
+	dateCreated: Date
 });
 
 mongoose.model('cities', citySchema);
