@@ -1,3 +1,5 @@
-module.exports = {
-	mongoURI: 'mongodb://repartay:development@ds249418.mlab.com:49418/ufm-dev'
-};
+if (process.env.NODE_ENV === 'production') {
+	module.exports = require('./prod');
+} else {
+	module.exports = require('./dev');
+}
