@@ -5,13 +5,10 @@ import CitiesList from './CitiesList';
 
 const Home = () => {
 	return (
-		<div>
-			<h2>StateList</h2>
-			<Switch>
-				<Route exact path="/" component={StateList} />
-				<Route path="/:stateId" component={CitiesList} />
-			</Switch>
-		</div>
+		<Switch>
+			<Route exact path="/state" component={StateList} />
+			<Route path="/state/:stateId" component={CitiesList} />
+		</Switch>
 	);
 };
 

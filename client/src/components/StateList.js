@@ -8,7 +8,11 @@ export const CityAPI = {
 		{ id: 2, nameCity: "nashville", nameState: "tn" },
 		{ id: 3, nameCity: "atlanta", nameState: "ga",  }
 	],
-	all: function() { return _.uniqBy(this.cities, 'nameState') }
+	all: function() { return _.uniqBy(this.cities, 'nameState') },
+	get: function(nameState) {
+    	const isState = c => c.nameState === nameState
+    	return this.cities.find(isState)
+  	}
 };
 
 const StateList = () => {
@@ -18,7 +22,7 @@ const StateList = () => {
 				{
 					CityAPI.all().map(c => (
 						<li key={c.id}>
-							<Link to={`/${c.nameState}`}>{c.nameState.toUpperCase()}</Link>
+							<Link to={`/state/${c.nameState}`}>{c.nameState.toUpperCase()}</Link>
 						</li>
 					))
 				}
