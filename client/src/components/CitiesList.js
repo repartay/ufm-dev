@@ -1,17 +1,35 @@
-import React from 'react';
-import { CityAPI } from './StateList';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchCities } from '../actions';
+// import { CityAPI } from './StateList';
 
-const CitiesList = (props) => {
-	const state = CityAPI.get(
-		props.match.params.stateId
-	)
-	console.log('props', props);
-	return (
-		<div style={{ textAlign: 'center' }}>
-			CitiesList
-			<h1>{state.nameState}</h1>
-		</div>
-	);
+class CitiesList extends Component {
+	componentDidMount() {
+		console.log('---stateId', this.props.match.params.stateId);
+		this.props.fetchCities(this.props.match.params.stateId);
+	}
+	renderCities() {
+		return this.props.cities.map(city => {
+			return (
+				<div className="card darken-1" key={city._id}>
+					<div className="card-content">
+						<span className="card-title">{city.name || city.nameCity}</span>
+					</div>
+          		</div>
+			);
+		})
+	}
+	render() {
+		return (
+			<div style={{ textAlign: 'center' }}>
+				{this.renderCities()}
+			</div>
+		);
+	}
 };
 
-export default CitiesList;
+function mapStateToProps(state) {
+	return { cities: state.cities };
+}
+
+export default connect(mapStateToProps, { fetchCities })(CitiesList);
