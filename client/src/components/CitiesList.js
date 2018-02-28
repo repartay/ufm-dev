@@ -5,12 +5,10 @@ import { fetchCities } from '../actions';
 
 class CitiesList extends Component {
 	componentDidMount() {
-		console.log('---stateId', this.props.match.params.stateId);
 		this.props.fetchCities(this.props.match.params.stateId);
 	}
 	renderCities() {
 		const stateId = this.props.match.params.stateId;
-		console.log('stateId', stateId);
 		return this.props.cities.map(city => {
 			return (
 				<div className="card darken-1" key={city._id}>
