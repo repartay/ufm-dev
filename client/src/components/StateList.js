@@ -1,34 +1,41 @@
 import _ from 'lodash';
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchStates } from '../actions';
 import { Link } from 'react-router-dom';
 
-export const CityAPI = {
-	cities: [
-		{ id: 1, nameCity: "knoxville", nameState: "tn" },
-		{ id: 2, nameCity: "nashville", nameState: "tn" },
-		{ id: 3, nameCity: "atlanta", nameState: "ga",  }
-	],
-	all: function() { return _.uniqBy(this.cities, 'nameState') },
-	get: function(nameState) {
-    	const isState = c => c.nameState === nameState
-    	return this.cities.find(isState)
-  	}
+class StateList extends Component {
+	componentDidMount() {
+		this.props.fetchStates();
+	}
+	renderStates() {
+		const allCities = _.uniqBy(this.props.cities, 'nameState');
+		console.log('allCities', allCities);
+		return (
+			<div>
+				{allCities.map(c => (
+					<div className="card darken-1" key={c.nameCity}>
+						<span className="card-title">
+							<Link to={`/state/${c.nameState}`}>
+								{c.nameState.toUpperCase()}
+							</Link>
+						</span>
+					</div>
+				))}
+			</div>
+		);
+	}
+	render() {
+		return (
+			<div style={{ textAlign: 'center' }}>
+				{this.renderStates()}
+			</div>
+		);
+	}
 };
 
-const StateList = () => {
-	return (
-		<div>
-			<ul>
-				{
-					CityAPI.all().map(c => (
-						<li key={c.id}>
-							<Link to={`/state/${c.nameState}`}>{c.nameState.toUpperCase()}</Link>
-						</li>
-					))
-				}
-			</ul>
-		</div>
-	);
-};
+function mapStateToProps(state) {
+	return { cities: state.cities };
+}
 
-export default StateList;
+export default connect(mapStateToProps, { fetchStates })(StateList);

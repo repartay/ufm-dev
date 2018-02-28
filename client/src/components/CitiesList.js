@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchCities } from '../actions';
-// import { CityAPI } from './StateList';
 
 class CitiesList extends Component {
 	componentDidMount() {
@@ -9,11 +9,17 @@ class CitiesList extends Component {
 		this.props.fetchCities(this.props.match.params.stateId);
 	}
 	renderCities() {
+		const stateId = this.props.match.params.stateId;
+		console.log('stateId', stateId);
 		return this.props.cities.map(city => {
 			return (
 				<div className="card darken-1" key={city._id}>
 					<div className="card-content">
-						<span className="card-title">{city.name || city.nameCity}</span>
+						<span className="card-title">
+							<Link to={`/state/${stateId}/${city.nameCity}`}>
+								{city.name || city.nameCity}
+							</Link>
+						</span>
 					</div>
           		</div>
 			);
