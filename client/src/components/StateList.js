@@ -10,7 +10,6 @@ class StateList extends Component {
 	}
 	renderStates() {
 		const allCities = _.uniqBy(this.props.cities, 'nameState');
-		console.log('allCities', allCities);
 		return (
 			<div>
 				{allCities.map(c => (
