@@ -2,6 +2,8 @@ import React from 'react';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import Home from './Home';
 import Header from './Header';
+import AdminDash from './Admin/AdminDash';
+import CityNew from './Admin/CityNew';
 
 const Dash = () => {
 	return (
@@ -21,6 +23,8 @@ const App = () => {
 				<div>
 					<Header />
 					<Route path="/" exact component={Dash} />
+					<Route exact path="/admin" component={AdminDash} />
+					<Route path="/admin/new" component={CityNew} />
 					<Route path="/state" component={Home} />
 					<Route path="/ufm-redirect" component={
 						() => window.location = 'http://userfriendlymaps.com'

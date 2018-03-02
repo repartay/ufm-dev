@@ -1,6 +1,8 @@
 const express = require('express');
+const fileUpload = require('express-fileupload');
 const mongoose = require('mongoose');
 const keys = require('./config/keys');
+const bodyParser = require('body-parser');
 require('./models/City');
 require('./services/mongoose');
 
@@ -8,7 +10,11 @@ mongoose.connect(keys.mongoURI);
 
 const app = express();
 
+app.use(bodyParser.json());
+app.use(fileUpload());
+
 require('./routes/cityRoutes')(app);
+// require('./routes/uploadRoutes')(app);
 
 if (process.env.NODE_ENV === 'production') {
 	app.use(express.static('client/build'));

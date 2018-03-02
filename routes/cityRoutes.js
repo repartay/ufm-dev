@@ -13,16 +13,20 @@ module.exports = (app) => {
 		res.send(cities);
 	});
 
-	// 02 CREATE NEW CITY MODEL INSTANCE untested
 	app.post('/api/new', async (req, res) => {
-		const { nameCity, nameState } = req.body;
-		// make uri versions of each
+		const { nameCity, nameState, restaurants } = req.body;
+		console.log('----req.body', req.body, '--------');
 		const newCity = new City({
 			nameCity,
 			nameState,
-			dateCreated: Date.now()
+			restaurants
 		});
-		const city = await req.newCity.save();
-		res.send(city);
+		console.log('newCity', newCity);
+		try {
+			await newCity.save();
+			res.send(newCity);
+		} catch (err) {
+			res.status(422).send(err);
+		}
 	});
 };
