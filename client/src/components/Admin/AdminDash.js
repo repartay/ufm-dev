@@ -8,8 +8,8 @@ const AdminDash = () => {
 	return (
 		<Switch>
 			<Route exact path="/admin" component={AdminList} />
+			<Route exact path="/admin/edit/:cityId" component={CityEdit} />
 			<Route exact path="/admin/new" component={CityNew} />
-			<Route exact path="/admin/:cityId" component={CityEdit} />
 		</Switch>
 	);
 };

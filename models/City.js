@@ -5,8 +5,7 @@ const RestaurantSchema = require('./CityRestaurant');
 const citySchema = new Schema ({
 	nameCity: String,
 	nameState: String,
-	uriCity: String,
-	uriState: String,
+	namePretty: String,
 	restaurants: [RestaurantSchema],
 	dateCreated: Date
 });

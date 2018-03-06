@@ -15,7 +15,7 @@ class CitiesList extends Component {
 					<div className="card-content">
 						<span className="card-title">
 							<Link to={`/state/${stateId}/${city.nameCity}`}>
-								{city.name || city.nameCity}
+								{city.namePretty}
 							</Link>
 						</span>
 					</div>

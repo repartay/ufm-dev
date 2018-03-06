@@ -8,13 +8,14 @@ class AdminList extends Component {
 		this.props.fetchStates();
 	}
 	renderCities() {
+		console.log('this.props - AdminList', this.props);
 		return this.props.cities.map(city => {
 			return (
 				<div className="card darken-1" key={city._id}>
 					<div className="card-content">
 						<span className="card-title">
-							<Link to={`/admin/${city.nameCity}`}>
-								{city.name || city.nameCity}
+							<Link to={`/admin/edit/${city.nameCity}`}>
+								{city.namePretty}
 							</Link>
 						</span>
 					</div>
