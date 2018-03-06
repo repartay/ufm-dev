@@ -14,6 +14,8 @@ module.exports = (app) => {
 		res.send(cities);
 	});
 	app.get('/api/:cityId', async (req, res) => {
+		console.log('city EDIT req.body', req.body);
+		console.log('----req', req.params);
 		const cities = await City.find({ nameCity: req.params.cityId });
 		res.send(cities);
 	});
@@ -35,16 +37,16 @@ module.exports = (app) => {
 		}
 	});
 	app.get('/api/edit/:cityId', async (req, res) => {
-		// console.log('req', req.params);
 		const cities = await City.find({ nameCity: req.params.cityId });
 		res.send(cities);
 	});
 	app.post('/api/edit/:cityId', async (req, res) => {
-		console.log('city EDIT req.body', req.body);
 		const thisCity = await City.updateOne({ 
-			nameCity: req.params.cityId,
-			restaurants: req.body.restaurants
-		});
+			nameCity: req.params.cityId
+		}, {
+			$set: { 'restaurants': req.body.restaurants }
+		}).exec();
+		console.log('thisCity', thisCity);
 		res.send({});
 	});
 };

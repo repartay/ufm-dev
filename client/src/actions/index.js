@@ -26,7 +26,7 @@ export const submitNew = (values, history) => async dispatch => {
 	console.log('----values', values);
 	const res = await axios.post('/api/new', values);
 	console.log('res----!!', res);
-	history.push(`/admin/new/${values.nameCity}`);
+	history.push(`/admin/edit/${values.nameCity}`);
 	dispatch({ type: FETCH_CITIES, payload: res.data });
 };
 
@@ -38,6 +38,6 @@ export const uploadList = (values, history) => async dispatch => {
 	// const config = { headers: { 'Content-Type': 'multipart/form-data' } };
 	const res = await axios.post(`/api/edit/${values.nameCity}`, values);
 	console.log('res----!!', res);
-	history.push(`/state}`);
+	history.push('/admin/success');
 	dispatch({ type: FETCH_CITIES, payload: res.data });
 };
