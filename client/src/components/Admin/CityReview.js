@@ -1,16 +1,10 @@
 import React from 'react';
-// import csvToJson from'convert-csv-to-json';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import * as actions from '../../actions';
-import SimpleUploaderCsv from './SimpleUploaderCsv';
 
 const CityReview = ({ onCancel, formValues, submitNew, history }) => {
 	console.log('formValues ', formValues);
-	console.log('submitNew', submitNew);
-	// let json = csvToJson.getJsonFromCsv(formValues.restaurants);
-	
-	// console.log('json', json);
 	return (
 		<div>
 			<h5>Please review your entries</h5>
@@ -21,7 +15,6 @@ const CityReview = ({ onCancel, formValues, submitNew, history }) => {
           		Back
           		<i className="material-icons right">cancel</i>
         	</button>
-        	<SimpleUploaderCsv />
         	<button
         		onClick={() => submitNew(formValues, history)}
 				className="green white-text btn-flat right"

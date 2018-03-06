@@ -3,14 +3,20 @@ const fileUpload = require('express-fileupload');
 const mongoose = require('mongoose');
 const keys = require('./config/keys');
 const bodyParser = require('body-parser');
+
 require('./models/City');
+
 require('./services/mongoose');
+
+const City = mongoose.model('cities');
 
 mongoose.connect(keys.mongoURI);
 
 const app = express();
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use(fileUpload());
 
 require('./routes/cityRoutes')(app);

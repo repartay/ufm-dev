@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const City = mongoose.model('cities');
+// const fileStorage = require('../middlewares/fileStorage');
 
 module.exports = (app) => {
 	app.get('/api/state', async (req, res) => {
@@ -14,8 +15,9 @@ module.exports = (app) => {
 	});
 
 	app.post('/api/new', async (req, res) => {
-		const { nameCity, nameState, restaurants } = req.body;
 		console.log('----req.body', req.body, '--------');
+		const { nameCity, nameState, restaurants } = req.body;
+		console.log('-----req.files', req.files);
 		const newCity = new City({
 			nameCity,
 			nameState,

@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
-// import Dropzone from 'react-dropzone';
-// import csv from 'csv';
-// import FileInput from './FileInput';
-// import SimpleUploaderCsv from './SimpleUploaderCsv';
-// import { fileUploader } from './fileUploader';
+// import FileInputSimple from './FileInputSimple';
 
-// <input type="submit" value="Upload City" />
 class CityForm extends Component {
 	render() {
-		
 		return (
 			<div>
 				City New
@@ -17,12 +11,9 @@ class CityForm extends Component {
 					<label>State</label>
 					<Field type="text" name="nameState" component="input" />
 					<label>City</label>
-					<Field type="text" label="City" name="nameCity" component="input" />
+					<Field type="text" name="nameCity" component="input" />
 					<label>Restaurant List</label>
-					{/* <Field component={FileInput} name="restaurants" accepts="*.csv" /> */}
-					{/* <Field component={SimpleUploaderCsv} name="restaurants" accepts="*.csv" /> */}
-					{/* <Field component="input" name="file" accepts="*.csv" /> */}
-					{/* <SimpleUploaderCsv /> */}
+					{/* <Field component={FileInputSimple} name="restaurants" /> */}
 	        		<button
 	        			type="submit"
 						className="green white-text btn-flat right"
