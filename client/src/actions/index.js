@@ -31,12 +31,12 @@ export const submitNew = (values, history) => async dispatch => {
 };
 
 //Data form only
-export const uploadList = (city, values, history) => async dispatch => {
+export const uploadList = (values, history) => async dispatch => {
 	console.log('----values', values);
 	// var formData = new FormData();
     // formData.append("restaurants", values.restaurants);
 	// const config = { headers: { 'Content-Type': 'multipart/form-data' } };
-	const res = await axios.post(`/api/new/${city}`, values);
+	const res = await axios.post(`/api/edit/${values.nameCity}`, values);
 	console.log('res----!!', res);
 	history.push(`/state}`);
 	dispatch({ type: FETCH_CITIES, payload: res.data });

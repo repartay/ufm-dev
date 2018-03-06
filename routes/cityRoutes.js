@@ -34,11 +34,11 @@ module.exports = (app) => {
 			res.status(422).send(err);
 		}
 	});
-	app.get('/api/new/:cityId', async (req, res) => {
+	app.get('/api/edit/:cityId', async (req, res) => {
+		// console.log('req', req.params);
 		const cities = await City.find({ nameCity: req.params.cityId });
 		res.send(cities);
 	});
-	/*
 	app.post('/api/edit/:cityId', async (req, res) => {
 		console.log('city EDIT req.body', req.body);
 		const thisCity = await City.updateOne({ 
@@ -47,5 +47,4 @@ module.exports = (app) => {
 		});
 		res.send({});
 	});
-	*/
 };

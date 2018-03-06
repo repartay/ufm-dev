@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const PlacesList = () => {
-	return (
-		<div>
-			Places
-		</div>
-	);
+class PlacesList extends Component {
+	render() {
+		console.log('this.props', this.props);
+		return (
+			<div>
+				Places
+			</div>
+		);
+	}
 };
 
 export default PlacesList;

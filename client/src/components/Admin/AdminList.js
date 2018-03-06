@@ -8,7 +8,6 @@ class AdminList extends Component {
 		this.props.fetchStates();
 	}
 	renderCities() {
-		console.log('this.props - AdminList', this.props);
 		return this.props.cities.map(city => {
 			return (
 				<div className="card darken-1" key={city._id}>

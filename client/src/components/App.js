@@ -8,7 +8,11 @@ const Dash = () => {
 	return (
 		<div>
 			<h2>Dash</h2>
-			<Link to="/state">States</Link>
+			<ul>
+				<Link to="/state">States</Link>
+				<br />
+				<Link to="/admin">Admin</Link>
+			</ul>
 		</div>
 	)
 }
