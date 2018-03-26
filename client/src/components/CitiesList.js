@@ -14,7 +14,7 @@ class CitiesList extends Component {
 				<div className="card darken-1" key={city._id}>
 					<div className="card-content">
 						<span className="card-title">
-							<Link to={`/state/${stateId}/${city.nameCity}`}>
+							<Link to={`/state/${stateId}/city/${city.nameCity}`}>
 								{city.namePretty}
 							</Link>
 						</span>

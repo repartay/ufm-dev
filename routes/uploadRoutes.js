@@ -24,8 +24,8 @@ module.exports = (app) => {
 		
 	});
 	
-	app.get('/api/:cityId', async (req, res) => {
-		const cities = await City.find({ nameState: req.params.stateId });
-		res.send(cities);
-	});
+	// app.get('/api/:cityId', async (req, res) => {
+	// 	const cities = await City.find({ nameState: req.params.stateId });
+	// 	res.send(cities);
+	// });
 };

@@ -8,27 +8,21 @@ module.exports = (app) => {
 		const cities = await City.find({ });
 		res.send(cities);
 	});
-	
+	app.get('/api/city/:cityId', async (req, res) => {
+		const city = await City.find({ nameCity: req.params.cityId });
+		res.send(city);
+	});
 	app.get('/api/:stateId', async (req, res) => {
 		const cities = await City.find({ nameState: req.params.stateId });
 		res.send(cities);
 	});
-	app.get('/api/:cityId', async (req, res) => {
-		console.log('city EDIT req.body', req.body);
-		console.log('----req', req.params);
-		const cities = await City.find({ nameCity: req.params.cityId });
-		res.send(cities);
-	});
-
 	app.post('/api/new', async (req, res) => {
-		console.log('----req.body', req.body, '--------');
 		const { nameCity, nameState, namePretty } = req.body;
 		const newCity = new City({
 			nameCity,
 			nameState,
 			namePretty
 		});
-		console.log('newCity', newCity);
 		try {
 			await newCity.save();
 			res.send(newCity);
@@ -36,17 +30,12 @@ module.exports = (app) => {
 			res.status(422).send(err);
 		}
 	});
-	app.get('/api/edit/:cityId', async (req, res) => {
-		const cities = await City.find({ nameCity: req.params.cityId });
-		res.send(cities);
-	});
 	app.post('/api/edit/:cityId', async (req, res) => {
 		const thisCity = await City.updateOne({ 
 			nameCity: req.params.cityId
 		}, {
 			$set: { 'restaurants': req.body.restaurants }
 		}).exec();
-		console.log('thisCity', thisCity);
 		res.send({});
 	});
 };
