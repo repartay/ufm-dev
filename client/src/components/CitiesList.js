@@ -12,7 +12,7 @@ class CitiesList extends Component {
 		return this.props.cities.map(city => {
 			return (
 				<div className="card darken-1" key={city._id}>
-					<div className="card-content">
+					<div className="card-content place-wrap">
 						<span className="card-title">
 							<Link to={`/state/${stateId}/city/${city.nameCity}`}>
 								{city.namePretty}

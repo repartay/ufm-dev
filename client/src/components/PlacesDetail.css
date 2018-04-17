@@ -2,3 +2,75 @@
 	display: flex;
 	justify-content: space-between;
 }
+.expand-icon {
+	flex-basis: 40px;
+	flex-shrink: 0;
+	/* margin: auto 0; */
+}
+.place-wrapper {
+	display: flex;
+	flex-grow: 1;
+	flex-direction: column;
+}
+.place-wrapper {
+	display: flex;
+	flex-direction: column;
+	align-content: flex-start;
+}
+.place-title {
+	text-align: left;
+	font-weight: 400;
+}
+.place-desc {
+	text-align: left;
+	color: #686868;
+	font-size: .8em;
+	font-weight: 300;
+}
+@media screen and (min-width: 600px) {
+	.place-wrapper {
+		flex-direction: row;
+	}
+	.place-title {
+		flex-grow: 1;
+	}
+	.place-desc {
+		flex-basis: 200px;
+		flex-shrink: 0;
+	}
+}
+
+.content-wrapper {
+	display: flex;
+	flex-direction: column;
+	align-content: flex-start;
+}
+.address-sect {
+	text-align: left;
+}
+.address-text {
+	font-size: .9em;
+}
+.phone-text {
+	font-size: .9em;
+}
+
+.amen-sect {
+	margin-left: 60px;
+}
+.yesOrNo-sect {
+	display: flex;
+	justify-content: space-between;
+}
+.yesOrNo-question {
+	font-weight: 400;
+	font-size: .8em;
+	color: #606060;
+}
+.social-sect {
+	display: flex;
+	align-content: flex-start;
+}
+.social-icon {
+	padding-right: 5px;
+}

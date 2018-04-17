@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchCity } from '../actions';
 import PlaceDetail from './PlaceDetail';
+import './PlacesList.css';
 
 class PlacesList extends Component {
 	componentDidMount() {
@@ -17,14 +18,27 @@ class PlacesList extends Component {
 	}
 	renderRestaurants() {
 		const city = this.props.city;
+
+		console.log('city', city);
 		const thisCityRestaurants = city[0] && city[0].restaurants;
+		const nameCity = city[0] && city[0].namePretty;
+		const nameState = city[0] && city[0].nameState;
+		// console.log('thisCityRestaurants', thisCityRestaurants);
 		if (thisCityRestaurants) {
 			return thisCityRestaurants.map(r => {
 				return (
 					<div className="card darken-1" key={r._id}>
-						<div className="card-content">
+						<div className="card-content place-wrap">
 							<span className="card-title">
-								<PlaceDetail name={r.name} address={r.address} phoneNumber={r.phoneNumber} />
+								<PlaceDetail 
+									nameCity={nameCity}
+									nameState={nameState}
+									name={r.name}
+									address={r.address}
+									phoneNumber={r.phoneNumber}
+									twoWordDescription={r.twoWordDescription}
+
+								/>
 							</span>
 						</div>
 	          		</div>
