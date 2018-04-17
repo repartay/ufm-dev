@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+import MdRemove from 'react-icons/lib/md/remove';
+import MdAdd from 'react-icons/lib/md/add';
+import FaFacebookSquare from 'react-icons/lib/fa/facebook-square';
+import FaGooglePlusSquare from 'react-icons/lib/fa/google-plus-square';
+import FaYelp from 'react-icons/lib/fa/yelp';
 import './PlacesDetail.css';
 
 class PlaceDetail extends Component {
@@ -31,7 +36,7 @@ class PlaceDetail extends Component {
 						<div className="place-title">{name}</div>
 						<div className="place-desc">{twoWordDescription}</div>
 					</div>
-					<div className="expand-icon">{this.state.active ? '--' : '+'}</div>
+					<div className="expand-icon">{this.state.active ? <MdRemove size={25} /> : <MdAdd size={25} />}</div>
 				</div>
 				{this.state.active && 
 					<div className="content-wrapper">
@@ -40,7 +45,7 @@ class PlaceDetail extends Component {
 							<div className="address-text"><p>{nameCity}, {nameState}</p></div>
 							<div className="phone-text"><a href={tel}>{phoneNumber}</a></div>
 						</div>
-						<div className="amen-sect">
+						<div className="amenities-sect">
 							<div className="yesOrNo-sect">
 								<div className="yesOrNo-question">Breakfast Served?</div>
 								<div>Y/N</div>
@@ -50,9 +55,9 @@ class PlaceDetail extends Component {
 								<div>Y/N</div>
 							</div>
 							<div className="social-sect">
-								<div className="social-icon">Ggl</div>
-								<div className="social-icon">Fb</div>
-								<div className="social-icon">Ylp</div>
+								<div className="social-icon"><FaGooglePlusSquare color="#c9302c" size={40}/></div>
+								<div className="social-icon"><FaFacebookSquare color="#3b5998" size={40} /></div>
+								<div className="social-icon"><FaYelp color="#c41200" size={40}/></div>
 							</div>
 						</div>
 					</div>
