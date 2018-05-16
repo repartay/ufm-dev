@@ -4,38 +4,38 @@ const City = mongoose.model('cities');
 // const fileStorage = require('../middlewares/fileStorage');
 
 module.exports = (app) => {
-	app.get('/api/state', async (req, res) => {
-		const cities = await City.find({ });
-		res.send(cities);
-	});
-	app.get('/api/city/:cityId', async (req, res) => {
-		const city = await City.find({ nameCity: req.params.cityId });
-		res.send(city);
-	});
-	app.get('/api/:stateId', async (req, res) => {
-		const cities = await City.find({ nameState: req.params.stateId });
-		res.send(cities);
-	});
-	app.post('/api/new', async (req, res) => {
-		const { nameCity, nameState, namePretty } = req.body;
-		const newCity = new City({
-			nameCity,
-			nameState,
-			namePretty
-		});
-		try {
-			await newCity.save();
-			res.send(newCity);
-		} catch (err) {
-			res.status(422).send(err);
-		}
-	});
-	app.post('/api/edit/:cityId', async (req, res) => {
-		const thisCity = await City.updateOne({ 
-			nameCity: req.params.cityId
-		}, {
-			$set: { 'restaurants': req.body.restaurants }
-		}).exec();
-		res.send({});
-	});
+  app.get('/api/state', async (req, res) => {
+    const cities = await City.find({ });
+    res.send(cities);
+  });
+  app.get('/api/city/:cityId', async (req, res) => {
+    const city = await City.find({ nameCity: req.params.cityId });
+    res.send(city);
+  });
+  app.get('/api/:stateId', async (req, res) => {
+    const cities = await City.find({ nameState: req.params.stateId });
+    res.send(cities);
+  });
+  app.post('/api/new', async (req, res) => {
+    const { nameCity, nameState, namePretty } = req.body;
+    const newCity = new City({
+      nameCity,
+      nameState,
+      namePretty,
+    });
+    try {
+      await newCity.save();
+      res.send(newCity);
+    } catch (err) {
+      res.status(422).send(err);
+    }
+  });
+  app.post('/api/edit/:cityId', async (req, res) => {
+    const thisCity = await City.updateOne({
+      nameCity: req.params.cityId,
+    }, {
+      $set: { restaurants: req.body.restaurants },
+    }).exec();
+    res.send({});
+  });
 };

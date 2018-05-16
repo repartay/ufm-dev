@@ -36,7 +36,7 @@ class CityEdit extends Component {
 		console.log('this.state', this.state);
 		const hasCityData = this.props.cities && this.props.cities.length > 0;
 		if (!hasCityData) {
-			<div>Loading</div>
+      return <div>Loading</div>
 		}
 		const city = this.props.cities;
 		const thisCity = city[0];
@@ -59,7 +59,7 @@ class CityEdit extends Component {
 				</div>
 				<ReactFileReader fileTypes={".csv"} handleFiles={this.handleFiles}>
   					<button className='btn'>Upload</button>
-				</ReactFileReader>		
+				</ReactFileReader>
 				<button
 	        		onClick={() => this.props.uploadList(this.state, this.props.history)}
 					className="green white-text btn-flat right"
