@@ -4,6 +4,8 @@ import { fetchCity } from '../actions';
 import PlaceDetail from './PlaceDetail';
 import Loading from './Loading';
 import './PlacesList.css';
+import logo from '../imgs/GoodlettsvilleLogo.svg';
+
 
 class PlacesList extends Component {
   constructor() {
@@ -19,13 +21,12 @@ class PlacesList extends Component {
   renderTitle() {
     const { city } = this.props;
     const hasLogo = city[0] && city[0].hasLogo;
-    const logo = city[0] && city[0].logoName;
-    const imgSrc = '../../public/imgs/' + logo;
+    // const logo = city[0] && city[0].logoName;
     const thisCityName = city[0] && city[0].namePretty;
     const thisStateName = city[0] && city[0].nameState;
     if (thisCityName && thisStateName) {
       if (hasLogo) {
-        return <div><img src={require('../imgs/GoodlettsvilleLogo.png')}/></div>
+        return <img src={logo} alt="logo" />
       }
       return (<h2>{thisCityName}, {thisStateName} </h2>);
     }
