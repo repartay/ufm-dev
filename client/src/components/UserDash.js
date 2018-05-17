@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchCities } from '../actions';
+import Header from './Header';
+import { fetchStates } from '../actions';
 
-class CitiesList extends Component {
+class UserDash extends Component {
 	componentDidMount() {
-		this.props.fetchCities(this.props.match.params.stateId);
+		this.props.fetchStates();
 	}
 	renderCities() {
-		const stateId = this.props.match.params.stateId;
 		return this.props.cities.map(city => {
 			return (
 				<div className="card darken-1" key={city._id}>
-					<div className="card-content place-wrap">
+					<div className="card-content">
 						<span className="card-title">
-							<Link to={`/state/${stateId}/city/${city.nameCity}`}>
+							<Link to={`/${city.nameCity}`}>
 								{city.namePretty}
 							</Link>
 						</span>
@@ -25,8 +25,11 @@ class CitiesList extends Component {
 	}
 	render() {
 		return (
-			<div style={{ textAlign: 'center' }}>
-				{this.renderCities()}
+			<div>
+				<Header />
+					<div style={{ textAlign: 'center' }}>
+						{this.renderCities()}
+					</div>
 			</div>
 		);
 	}
@@ -36,4 +39,4 @@ function mapStateToProps(state) {
 	return { cities: state.cities };
 }
 
-export default connect(mapStateToProps, { fetchCities })(CitiesList);
+export default connect(mapStateToProps, { fetchStates })(UserDash);

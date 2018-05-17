@@ -2,64 +2,85 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchCity } from '../actions';
 import PlaceDetail from './PlaceDetail';
+import Loading from './Loading';
 import './PlacesList.css';
 
 class PlacesList extends Component {
+  constructor() {
+    super();
+    this.state = {
+      isFetching: true
+    }
+  }
   componentDidMount() {
     this.props.fetchCity(this.props.match.params.cityId);
+    setTimeout(() => this.setState({ isFetching: false }), 1500);
   }
   renderTitle() {
-    const city = this.props.city;
+    const { city } = this.props;
+    const hasLogo = city[0] && city[0].hasLogo;
+    const logo = city[0] && city[0].logoName;
+    const imgSrc = '../../public/imgs/' + logo;
     const thisCityName = city[0] && city[0].namePretty;
     const thisStateName = city[0] && city[0].nameState;
     if (thisCityName && thisStateName) {
+      if (hasLogo) {
+        return <div><img src={require('../imgs/GoodlettsvilleLogo.png')}/></div>
+      }
       return (<h2>{thisCityName}, {thisStateName} </h2>);
     }
     return null;
   }
   renderRestaurants() {
-    const city = this.props.city;
+    const { city } = this.props;
     const thisCityRestaurants = city[0] && city[0].restaurants;
     const nameCity = city[0] && city[0].namePretty;
     const nameState = city[0] && city[0].nameState;
     if (thisCityRestaurants) {
-      return thisCityRestaurants.map(r => {
-        return (
-          <div className="card darken-1" key={r._id}>
-            <div className="card-content place-wrap">
-              <span className="card-title">
-                <PlaceDetail
-                  nameCity={nameCity}
-                  nameState={nameState}
-                  name={r.name}
-                  address={r.address}
-                  phoneNumberBase={r.phoneNumberBase}
-                  phoneNumberPrefix={r.phoneNumberPrefix}
-                  twoWordDescription={r.twoWordDescription}
-                  hasAlcohol={r.hasAlcohol}
-                  hasBreakfast={r.hasBreakfast}
-                  linkYelp={r.linkYelp}
-                  linkFb={r.linkFb}
-                />
-              </span>
-            </div>
+      return thisCityRestaurants.map(r =>
+        <div className="card darken-1" key={r._id}>
+          <div className="card-content place-wrap">
+            <span className="card-title">
+              <PlaceDetail
+                nameCity={nameCity}
+                nameState={nameState}
+                name={r.name}
+                address={r.address}
+                phoneNumberBase={r.phoneNumberBase}
+                phoneNumberPrefix={r.phoneNumberPrefix}
+                twoWordDescription={r.twoWordDescription}
+                hasAlcohol={r.hasAlcohol}
+                hasBreakfast={r.hasBreakfast}
+                linkYelp={r.linkYelp}
+                linkFb={r.linkFb}
+              />
+            </span>
           </div>
-        );
-      });
+        </div>);
     }
+    return null;
   }
   render() {
+    const { isFetching } = this.state;
+    console.log('isFetching', isFetching);
+    console.log('this.props yo', this.props);
     return (
       <div style={{ textAlign: 'center' }}>
-        {this.renderTitle()}
-        {this.renderRestaurants()}
+        {isFetching ? 
+          <Loading />:
+          <div>
+            {this.renderTitle()}
+            {this.renderRestaurants()}
+          </div>
+          
+        }
       </div>
     );
   }
 }
 
-function mapStateToProps(state) {
-  return { city: state.city };
-}
+const mapStateToProps = (state) => ({
+  city: state.city,
+});
 
 export default connect(mapStateToProps, { fetchCity })(PlacesList);

@@ -15,10 +15,11 @@ window.axios = axios;
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
-	reducers, {}, composeEnhancers(applyMiddleware(reduxThunk))
+  reducers, {}, composeEnhancers(applyMiddleware(reduxThunk)),
 );
 
 ReactDOM.render(
-	<Provider store={store}><App /></Provider>,
-	document.querySelector('#root')
+  <Provider store={store}><App /></Provider>,
+  document.querySelector('#root'),
 );
+
