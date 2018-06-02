@@ -14,6 +14,8 @@ const restaurantSchema = new Schema({
   hasBreakfast: String,
   linkFb: String,
   linkYelp: String,
+  isChamberMember: String,
+  price: String,
 });
 
 module.exports = restaurantSchema;
