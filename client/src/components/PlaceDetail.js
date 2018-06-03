@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MdRemove from 'react-icons/lib/md/remove';
+import FaStarO from 'react-icons/lib/fa/star-o';
 import MdAdd from 'react-icons/lib/md/add';
 import FaFacebookSquare from 'react-icons/lib/fa/facebook-square';
 import FaYelp from 'react-icons/lib/fa/yelp';
@@ -31,6 +32,8 @@ class PlaceDetail extends Component {
       hasBreakfast,
       linkYelp,
       linkFb,
+      isChamberMember,
+      price
     } = this.props;
     const phoneFull = phoneNumberPrefix + '-' + phoneNumberBase;
     const tel = `tel:${phoneFull}`;
@@ -38,21 +41,48 @@ class PlaceDetail extends Component {
     const doesHaveBfast = hasBreakfast && hasBreakfast === 'B';
     const hasYelpLink = linkYelp && linkYelp !== '';
     const hasFbLink = linkFb && linkFb !== '';
+    const isMember = isChamberMember && isChamberMember === 'Y';
+    const hasPriceInfo = price && price !== '';
     return (
       <div>
         <div onClick={this.handleClick} className="header-wrapper">
           <div className="place-wrapper">
-            <div className="place-title">{name}</div>
-            <div className="place-desc">{twoWordDescription}</div>
+            <div className="place-title">
+              <div className="title-wrapper">
+                {(!this.state.active && isMember) ?
+                  <div className="icon-spacer">
+                    <FaStarO color="blue" size={22}/>
+                  </div>
+                  : <div className="spacer"></div>
+                 }
+                 <div className="title-text">{name}</div>
+            </div>
+            </div>
+            <div className="place-desc">
+              {twoWordDescription}&nbsp;
+              {this.state.active && hasPriceInfo && <span>/ {price}</span>}
+            </div>
           </div>
           <div className="expand-icon">{this.state.active ? <MdRemove size={25} /> : <MdAdd size={25} />}</div>
         </div>
         {this.state.active &&
           <div className="content-wrapper">
-            <div className="address-sect">
-              <div className="address-text"><p>{address}</p></div>
-              <div className="address-text"><p>{nameCity}, {nameState}</p></div>
-              <div className="phone-text"><a href={tel}>{phoneFull}</a></div>
+            <div className="chamber-wrapper">
+              {isMember ?
+                <div style={{ maxWidth: '50px' }}>
+                  <div className="icon-spacer"><FaStarO color="blue" size={22}/></div>
+                  <div className="chamber-text">
+                    Chamber Member
+                  </div>
+                </div>
+                : <div className="spacer"></div>
+              }
+              <div className="address-sect">
+                <div className="address-text"><p>{address}</p></div>
+                <div className="address-text"><p>{nameCity}, {nameState}</p></div>
+                <div className="phone-text"><a href={tel}>{phoneFull}</a></div>
+              </div>
+
             </div>
             <div className="amenities-sect">
               <div className="yesOrNo-sect">

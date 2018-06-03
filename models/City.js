@@ -6,6 +6,8 @@ const citySchema = new Schema ({
 	nameCity: String,
 	nameState: String,
 	namePretty: String,
+  hasLogo: Boolean,
+  logoName: String,
 	restaurants: [RestaurantSchema],
 	dateCreated: Date
 });

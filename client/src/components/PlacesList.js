@@ -50,6 +50,8 @@ class PlacesList extends Component {
                 hasBreakfast={r.hasBreakfast}
                 linkYelp={r.linkYelp}
                 linkFb={r.linkFb}
+                isChamberMember={r.isChamberMember}
+                price={r.price}
               />
             </span>
           </div>
