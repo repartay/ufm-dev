@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchCity } from '../actions';
+import { fetchCityReadOnly } from '../actions';
 import { fetchLogo } from '../helpers';
 import PlaceDetail from './PlaceDetail';
 import Loading from './Loading';
@@ -13,7 +13,7 @@ class PlacesList extends Component {
     this.state = { isFetching: true };
   }
   componentDidMount() {
-    this.props.fetchCity(this.props.match.params.cityId);
+    this.props.fetchCityReadOnly(this.props.match.params.cityId);
     setTimeout(() => this.setState({ isFetching: false }), 1500);
   }
   renderTitle() {
@@ -81,8 +81,8 @@ const mapStateToProps = state => ({
 
 PlacesList.propTypes = {
   city: PropTypes.array,
-  fetchCity: PropTypes.func,
+  fetchCityReadOnly: PropTypes.func,
 };
 
-export default connect(mapStateToProps, { fetchCity })(PlacesList);
+export default connect(mapStateToProps, { fetchCityReadOnly })(PlacesList);
 

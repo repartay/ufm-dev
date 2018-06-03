@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchStates } from '../../actions';
+import { fetchAllCitiesAdmin } from '../../actions';
 
 class AdminList extends Component {
 	componentDidMount() {
-		this.props.fetchStates();
+		this.props.fetchAllCitiesAdmin();
 	}
 	renderCities() {
 		return this.props.cities.map(city => {
@@ -13,7 +13,7 @@ class AdminList extends Component {
 				<div className="card darken-1" key={city._id}>
 					<div className="card-content">
 						<span className="card-title">
-							<Link to={`/admin/edit/${city.nameCity}`}>
+              <Link to={`/admin/edit/${city.nameCity}`}>
 								{city.namePretty}
 							</Link>
 						</span>
@@ -40,4 +40,4 @@ function mapStateToProps(state) {
 	return { cities: state.cities };
 }
 
-export default connect(mapStateToProps, { fetchStates })(AdminList);
+export default connect(mapStateToProps, { fetchAllCitiesAdmin })(AdminList);

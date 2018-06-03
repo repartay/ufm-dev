@@ -11,8 +11,8 @@ const AdminDash = () =>
 	<Header />
 	  <Switch>
 	    <Route exact path="/admin" component={AdminList} />
-	    <Route exact path="/admin/edit/:cityId" component={CityEdit} />
-	    <Route exact path="/admin/new" component={CityNew} />
+      <Route exact path="/admin/edit/:cityId" component={CityEdit} />
+	    <Route path="/admin/new" component={CityNew} />
 	    <Route exact path="/admin/success" component={SaveSuccess} />
 	 </Switch>
  </div>;

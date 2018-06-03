@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Header from './Header';
-import { fetchStates } from '../actions';
+import { fetchAllCitiesReadOnly } from '../actions';
 
 class UserDash extends Component {
 	componentDidMount() {
-		this.props.fetchStates();
+		this.props.fetchAllCitiesReadOnly();
 	}
 	renderCities() {
 		return this.props.cities.map(city => {
@@ -39,4 +39,4 @@ function mapStateToProps(state) {
 	return { cities: state.cities };
 }
 
-export default connect(mapStateToProps, { fetchStates })(UserDash);
+export default connect(mapStateToProps, { fetchAllCitiesReadOnly })(UserDash);
