@@ -20,19 +20,20 @@ class CityEdit extends Component {
     setTimeout(() => this.setState({ isFetching: false }), 1500);
   }
   handleFiles = files => {
-      let reader = new FileReader();
-      reader.onload = (e) => {
-        const csv = reader.result;
-        const res = Papa.parse(csv, {
-          header: true,
-          skipEmptyLines: true
-        });
-        this.setState({
-              restaurants: res.data
-          });
-          return;
-      }
-      reader.readAsText(files[0]);
+    let reader = new FileReader();
+    reader.onload = (e) => {
+      const csv = reader.result;
+      console.log('csv', csv);
+      const res = Papa.parse(csv, {
+        header: true,
+        skipEmptyLines: true
+      });
+      this.setState({
+        restaurants: res.data
+      });
+      return;
+    }
+    reader.readAsText(files[0]);
   }
   renderForm() {
     const { city } = this.props;
@@ -65,7 +66,6 @@ class CityEdit extends Component {
   }
   render() {
     const { isFetching } = this.state;
-    console.log('this.props in render', this.props);
     return (
       <div>
         {isFetching ?

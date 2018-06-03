@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const City = mongoose.model('cities');
-// const fileStorage = require('../middlewares/fileStorage');
 
 module.exports = (app) => {
   // USER - fetchAllCitiesReadOnly
@@ -22,16 +21,18 @@ module.exports = (app) => {
   // ADMIN - fetchCityEdit
   app.get('/api/adminedit/:cityId', async (req, res) => {
     const city = await City.find({ nameCity: req.params.cityId });
-    console.log('----CITY', city);
     res.send(city);
   });
-
-
-
-  app.get('/api/:stateId', async (req, res) => {
-    const cities = await City.find({ nameState: req.params.stateId });
-    res.send(cities);
+  // ADMIN - uploadList
+  app.post('/api/upload/:cityId', async (req, res) => {
+    const thisCity = await City.updateOne({
+      nameCity: req.params.cityId,
+    }, {
+      $set: { restaurants: req.body.restaurants },
+    }).exec();
+    res.send({});
   });
+  // ADMIN - submitNew
   app.post('/api/new', async (req, res) => {
     const { nameCity, nameState, namePretty } = req.body;
     const newCity = new City({
@@ -45,15 +46,5 @@ module.exports = (app) => {
     } catch (err) {
       res.status(422).send(err);
     }
-  });
-  app.post('/api/upload/:cityId', async (req, res) => {
-    console.log('req.params.cityId----', req.params.cityId);
-    console.log('thisCity', thisCity);
-    const thisCity = await City.updateOne({
-      nameCity: req.params.cityId,
-    }, {
-      $set: { restaurants: req.body.restaurants },
-    }).exec();
-    res.send({});
   });
 };

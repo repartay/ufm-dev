@@ -22,25 +22,15 @@ export const fetchCityEdit = (city) => async dispatch => {
 	const res = await axios.get(`/api/adminedit/${city}`);
 	dispatch({ type: FETCH_CITY, payload: res.data });
 };
-
-
-
-
-
-
-
-
-// Keep as admin only
+// ADMIN UPLOAD
+export const uploadList = (values, history) => async dispatch => {
+  const res = await axios.post(`/api/upload/${values.nameCity}`, values);
+  history.push('/admin/success');
+  dispatch({ type: FETCH_CITIES, payload: res.data });
+};
+// ADMIN NEW CITY
 export const submitNew = (values, history) => async dispatch => {
 	const res = await axios.post('/api/new', values);
   history.push(`/admin/edit/${values.nameCity}`);
-	dispatch({ type: FETCH_CITIES, payload: res.data });
-};
-export const uploadList = (values, history) => async dispatch => {
-	// var formData = new FormData();
-    // formData.append("restaurants", values.restaurants);
-	// const config = { headers: { 'Content-Type': 'multipart/form-data' } };
-	const res = await axios.post(`/api/edit/${values.nameCity}`, values);
-	history.push('/admin/success');
 	dispatch({ type: FETCH_CITIES, payload: res.data });
 };

@@ -20,7 +20,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(fileUpload());
 
 require('./routes/cityRoutes')(app);
-// require('./routes/uploadRoutes')(app);
 
 if (process.env.NODE_ENV === 'production') {
 	app.use(express.static('client/build'));

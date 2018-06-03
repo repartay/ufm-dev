@@ -33,16 +33,14 @@ class PlacesList extends Component {
   renderRestaurants() {
     const { city } = this.props;
     const thisCityRestaurants = city[0] && city[0].restaurants;
-    const nameCity = city[0] && city[0].namePretty;
-    const nameState = city[0] && city[0].nameState;
     if (thisCityRestaurants) {
       return thisCityRestaurants.map(r =>
         <div className="card darken-1" key={r._id}>
           <div className="card-content place-wrap">
             <span className="card-title">
               <PlaceDetail
-                nameCity={nameCity}
-                nameState={nameState}
+                nameCity={r.cityName}
+                nameState={r.stateName}
                 name={r.name}
                 address={r.address}
                 phoneNumberBase={r.phoneNumberBase}
