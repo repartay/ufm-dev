@@ -10,17 +10,13 @@ const CityReview = ({ onCancel, formValues, submitNew, history }) => {
 			<h5>Please review your entries</h5>
 			<div>
 				<label>City Name Pretty</label>
-				<div>
-					{formValues.namePretty}
-				</div>
+				<div>{formValues.namePretty}</div>
 				<label>URI City Name</label>
-				<div>
-					{formValues.nameCity}
-				</div>
+				<div>{formValues.nameCity}</div>
 				<label>State</label>
-				<div>
-					{formValues.nameState}
-				</div>
+				<div>{formValues.nameState}</div>
+				<label>SVG URI</label>
+				<div>{formValues.svgUri}</div>
 			</div>
 			<button
 				className="yellow darken-3 white-text btn-flat"

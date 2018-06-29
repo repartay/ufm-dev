@@ -49,7 +49,11 @@ class CityEdit extends Component {
             <div>{thisCity.nameCity}</div>
             <label>State</label>
             <div>{thisCity.nameState}</div>
+            <label>SVG URI</label>
+            <div>{thisCity.svgUri}</div>
           </div>
+          <br />
+          <label>Restaurants list (csv)</label>
           <ReactFileReader fileTypes={".csv"} handleFiles={this.handleFiles}>
             <button className='btn'>Upload</button>
           </ReactFileReader>

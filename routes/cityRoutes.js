@@ -34,11 +34,12 @@ module.exports = (app) => {
   });
   // ADMIN - submitNew
   app.post('/api/new', async (req, res) => {
-    const { nameCity, nameState, namePretty } = req.body;
+    const { nameCity, nameState, namePretty, svgUri } = req.body;
     const newCity = new City({
       nameCity,
       nameState,
       namePretty,
+      svgUri
     });
     try {
       await newCity.save();
